@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from './Pages/Landing';
+import { Landing, Error, Dashboard, Register } from './Pages';
 const App = () => {
   return (
     <div>
