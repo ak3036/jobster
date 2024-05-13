@@ -4,6 +4,9 @@ import { Logo } from '../Components/index';
 import Wrapper from '../assets/wrappers/RegisterPage';
 import { FormRow } from '../Components/index';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../store';
+import { loginUser, registerUser } from '../features/users/userSlice';
 
 const initialState = {
   name: '',
@@ -14,6 +17,9 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
+
+  const { user, isLoading } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -26,7 +32,13 @@ const Register = () => {
     const { name, email, password, isMember } = values;
     if (!email || !password || (!isMember && !name)) {
       toast.error('Please fill out all the details');
+      return;
     }
+    if (isMember) {
+      dispatch(loginUser({ email: email, password: password }));
+      return;
+    }
+    dispatch(registerUser({ name: name, email: email, password: password }));
   };
 
   const toogleMember = () => {
@@ -65,7 +77,7 @@ const Register = () => {
           handleChange={handleChange}
         />
 
-        <button type='submit' className='btn btn-block'>
+        <button type='submit' className='btn btn-block' disabled={isLoading}>
           submit
         </button>
         <p>
