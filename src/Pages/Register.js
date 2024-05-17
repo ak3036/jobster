@@ -49,9 +49,7 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
+      navigate('/');
     }
   }, [user]);
 
