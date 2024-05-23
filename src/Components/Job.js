@@ -58,7 +58,7 @@ const Job = ({
               type='button'
               className='btn delete-btn'
               onClick={() => {
-                console.log(dispatch(deleteJob(_id)));
+                dispatch(deleteJob(_id));
               }}
             >
               Delete
