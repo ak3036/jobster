@@ -7,7 +7,7 @@ import { useState, useMemo } from 'react';
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState('');
 
-  const { isLoading, search, searchStatus, searchType, sort, sortOptions } =
+  const { isLoading, searchStatus, searchType, sort, sortOptions } =
     useSelector((store) => store.allJobs);
   const { jobTypeOptions, statusOptions } = useSelector((store) => store.job);
   const dispatch = useDispatch();
@@ -27,11 +27,16 @@ const SearchContainer = () => {
       setLocalSearch(e.target.value);
       clearTimeout(timeoutID);
       timeoutID = setTimeout(() => {
-        dispatch(handleChange({ name: e.target.name, value: e.target.value }));
+        dispatch(
+          handleChange({
+            name: e.target.name,
+            value: e.target.value,
+          })
+        );
       }, 1000);
     };
   };
-
+  // eslint-disable-next-line
   const optimizedDebounce = useMemo(() => debounce(), []);
 
   return (

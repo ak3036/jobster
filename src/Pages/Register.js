@@ -50,6 +50,7 @@ const Register = () => {
     if (user) {
       navigate('/');
     }
+    // eslint-disable-next-line
   }, [user]);
 
   return (
