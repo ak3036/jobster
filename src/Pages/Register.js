@@ -5,7 +5,6 @@ import Wrapper from '../assets/wrappers/RegisterPage';
 import { FormRow } from '../Components/index';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from '../store';
 import { loginUser, registerUser } from '../features/users/userSlice';
 import { useNavigate } from 'react-router-dom';
 
